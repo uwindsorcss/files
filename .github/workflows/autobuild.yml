@@ -6,4 +6,4 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Run build script
-      run: sudo apt-get -y install tree && chmod +x ./build.sh && sudo ./build.sh 
+      run: sudo apt-get -y install tree && chmod +x ./build.sh && ./build.sh 
