@@ -1,4 +1,3 @@
-# find the most up to date version here: https://github.com/justinbornais/DirectoryTracer
 import os, sys
 sys.setrecursionlimit(10000)
 
@@ -36,10 +35,8 @@ boilerplate1 = """<html>
     </style>
 </head>
 <body>
-    <h2>View Directory Contents</h2>
-    <h1>{{ directory }}</h1>
-    <ul>
-"""
+    <h2>View Directory Contents</h2>\n"""
+
 boilerplate2 = "    </ul>\n</body>\n</html>"
 
 # recursive function that writes index.html and calls indexFolder for subdirectories
@@ -52,8 +49,12 @@ def indexFolder(directory):
 
     file_list = [n for n in os.listdir(directory) if not n in folder_list] # anything not in folder_list is a file
 
-    f = open(str(directory) + "/index.html", "w", encoding="utf8")
+    f = open(str(directory) + "/index.html", "w", encoding="utf8") # Create the file.
+    
+    # Fill with initial HTML code.
     f.write(boilerplate1)
+    if directory != ".": f.write("   <h1>" + directory.replace("\\", "/") + "</h1>\n")
+    f.write("    <ul>\n")
 
     # Write folder contents.
     if directory!='.':
@@ -62,7 +63,7 @@ def indexFolder(directory):
         if folder_list[i] not in ignored and not folder_list[i][0] == '.':
             f.write("        <li class=\"dir\"><b><a href=\"" + folder_list[i] + "\">📁 " + folder_list[i] + "/</a></b></li>\n")
 
-    # separate folders from files
+    # Separate folders from files.
     f.write("        <br />\n")
 
     # Write file contents.
@@ -70,10 +71,13 @@ def indexFolder(directory):
         if file_list[i] not in ignored and file_list[i] != "index.html" and not file_list[i][0] == '.':
             f.write("        <li class=\"file\"><a target=\"_blank\" href=\"" + file_list[i] + "\">📄 " + file_list[i] + "</a></li>\n")
 
-    # ending off the html file
+    # End off the html file.
     f.write(boilerplate2)
     f.close()
 
+<<<<<<< HEAD
+# Base case, where we index the current folder.
+=======
     # replacing {{ directory }} with the actual directory name
     with open(str(directory) + "/index.html", "r", encoding="utf8") as f:
         contents = f.read().replace('{{ directory }}', directory.replace('\\', '/'))
@@ -81,4 +85,5 @@ def indexFolder(directory):
         f.write(contents)
 
 # base case, where we index the current folder
+>>>>>>> c1ec5decbfbd3f4c9180e68f70f22d540c9ad458
 indexFolder(os.curdir)
