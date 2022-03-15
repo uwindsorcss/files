@@ -75,15 +75,5 @@ def indexFolder(directory):
     f.write(boilerplate2)
     f.close()
 
-<<<<<<< HEAD
 # Base case, where we index the current folder.
-=======
-    # replacing {{ directory }} with the actual directory name
-    with open(str(directory) + "/index.html", "r", encoding="utf8") as f:
-        contents = f.read().replace('{{ directory }}', directory.replace('\\', '/'))
-    with open(str(directory) + "/index.html", "w", encoding="utf8") as f:
-        f.write(contents)
-
-# base case, where we index the current folder
->>>>>>> c1ec5decbfbd3f4c9180e68f70f22d540c9ad458
 indexFolder(os.curdir)
