@@ -75,9 +75,9 @@ def indexFolder(directory):
     f.close()
 
     # replacing {{ directory }} with the actual directory name
-    with open(str(directory) + "\\index.html", "r", encoding="utf8") as f:
+    with open(str(directory) + "/index.html", "r", encoding="utf8") as f:
         contents = f.read().replace('{{ directory }}', directory.replace('\\', '/'))
-    with open(str(directory) + "\\index.html", "w", encoding="utf8") as f:
+    with open(str(directory) + "/index.html", "w", encoding="utf8") as f:
         f.write(contents)
 
 # base case, where we index the current folder
