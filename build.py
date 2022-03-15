@@ -1,3 +1,4 @@
+# find the most up to date version here: https://github.com/justinbornais/DirectoryTracer
 import os, sys
 sys.setrecursionlimit(10000)
 
